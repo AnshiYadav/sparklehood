@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Safety Incident Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-robot"></i> AI Safety Incident Dashboard</h1>
+            <div class="header-controls">
+                <button id="refresh-btn" class="btn"><i class="fas fa-sync-alt"></i> Refresh</button>
+                <button id="report-btn" class="btn primary"><i class="fas fa-plus"></i> Report Incident</button>
+            </div>
+        </header>
+
+        <div class="dashboard-content">
+            <aside class="filters-panel">
+                <h2>Filters</h2>
+                <div class="filter-group">
+                    <label for="severity-filter">Severity</label>
+                    <select id="severity-filter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="type-filter">Incident Type</label>
+                    <select id="type-filter" class="filter-select">
+                        <option value="all">All</option>
+                        <option value="bias">Bias/Discrimination</option>
+                        <option value="privacy">Privacy Violation</option>
+                        <option value="security">Security Breach</option>
+                        <option value="misinformation">Misinformation</option>
+                        <option value="physical-harm">Physical Harm</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="date-filter">Time Period</label>
+                    <select id="date-filter" class="filter-select">
+                        <option value="all">All Time</option>
+                        <option value="week">Last 7 Days</option>
+                        <option value="month">Last 30 Days</option>
+                        <option value="year">Last Year</option>
+                    </select>
+                </div>
+                <button id="apply-filters" class="btn primary">Apply Filters</button>
+                <button id="reset-filters" class="btn">Reset</button>
+            </aside>
+
+            <main class="incidents-list">
+                <div class="list-header">
+                    <h2>Reported Incidents</h2>
+                    <div class="stats">
+                        <span id="total-incidents">0</span> incidents
+                        <span id="filtered-incidents">(0 filtered)</span>
+                    </div>
+                </div>
+                <div id="incidents-container" class="incidents-container">
+                    <!-- Incidents will be loaded here -->
+                </div>
+            </main>
+        </div>
+
+        <div id="report-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h2>Report New Incident</h2>
+                <form id="incident-form">
+                    <div class="form-group">
+                        <label for="incident-title">Title*</label>
+                        <input type="text" id="incident-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="incident-description">Description*</label>
+                        <textarea id="incident-description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="incident-severity">Severity*</label>
+                            <select id="incident-severity" required>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                                <option value="critical">Critical</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="incident-type">Type*</label>
+                            <select id="incident-type" required>
+                                <option value="bias">Bias/Discrimination</option>
+                                <option value="privacy">Privacy Violation</option>
+                                <option value="security">Security Breach</option>
+                                <option value="misinformation">Misinformation</option>
+                                <option value="physical-harm">Physical Harm</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="incident-date">Date*</label>
+                        <input type="date" id="incident-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="incident-source">Source/Reference</label>
+                        <input type="text" id="incident-source">
+                    </div>
+                    <button type="submit" class="btn primary">Submit Report</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
